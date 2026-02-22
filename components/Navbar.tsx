@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import NavItems from "../NavItems";
+import NavItems from "./NavItems";
 
 const Navbar = () => {
   return (
