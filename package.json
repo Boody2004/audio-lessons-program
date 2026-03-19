@@ -12,6 +12,7 @@
     "@clerk/nextjs": "^7.0.1",
     "@hookform/resolvers": "^5.2.2",
     "@jsmastery/utils": "^1.0.2",
+    "@sentry/nextjs": "^10.44.0",
     "@supabase/supabase-js": "^2.98.0",
     "@vapi-ai/web": "^2.5.2",
     "class-variance-authority": "^0.7.1",
