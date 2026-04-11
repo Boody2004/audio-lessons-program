@@ -1,5 +1,5 @@
 import CompanionCard from "@/components/CompanionCard";
-import CompanionList from "@/components/CompanionList";
+import CompanionsList from "@/components/CompanionsList";
 import CTA from "@/components/CTA";
 import { recentSessions } from "@/constants";
 import {
@@ -14,7 +14,8 @@ const Page = async () => {
 
   return (
     <main>
-      <h1 className="text-2xl underline">Popular Companions</h1>
+      <h1>Popular Companions</h1>
+
       <section className="home-section">
         {companions.map((companion) => (
           <CompanionCard
@@ -24,8 +25,9 @@ const Page = async () => {
           />
         ))}
       </section>
+
       <section className="home-section">
-        <CompanionList
+        <CompanionsList
           title="Recently completed sessions"
           companions={recentSessionsCompanions}
           className="w-2/3 max-lg:w-full"

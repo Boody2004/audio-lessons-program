@@ -29,7 +29,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { subjects } from "@/constants";
-import {createCompanion} from "@/lib/actions/companion.actions";
+import { createCompanion } from "@/lib/actions/companion.actions";
 import { redirect } from "next/navigation";
 
 import { Textarea } from "./ui/textarea";
@@ -55,16 +55,16 @@ const CompanionForm = () => {
     },
   });
 
-    const onSubmit = async (values: z.infer<typeof formSchema>) => {
-        const companion = await createCompanion(values);
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    const companion = await createCompanion(values);
 
-        if(companion) {
-            redirect(`/companions/${companion.id}`);
-        } else {
-            console.log('Failed to create a companion');
-            redirect('/');
-        }
+    if (companion) {
+      redirect(`/companions/${companion.id}`);
+    } else {
+      console.log("Failed to create a companion");
+      redirect("/");
     }
+  };
 
   return (
     <Card className="w-full sm:max-w-md">
@@ -222,18 +222,26 @@ const CompanionForm = () => {
               control={form.control}
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel htmlFor="form-rhf-demo-title">
+                  <FieldLabel htmlFor="duration-select">
                     Estimated session duration in minutes
                   </FieldLabel>
-                  <Input
-                    {...field}
-                    id="form-rhf-demo-title"
-                    aria-invalid={fieldState.invalid}
-                    type="number"
-                    placeholder="15"
-                    autoComplete="off"
-                    className="input"
-                  />
+                  <Select
+                    /* Convert string back to number for the form state */
+                    onValueChange={(value) => field.onChange(parseInt(value))}
+                    /* Convert number to string for the Select component */
+                    value={field.value?.toString()}
+                    defaultValue={field.value?.toString()}
+                  >
+                    <SelectTrigger id="duration-select" className="input">
+                      <SelectValue placeholder="Select duration" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectItem value="10">10 Minutes</SelectItem>
+                        <SelectItem value="15">15 Minutes</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
                   {fieldState.invalid && (
                     <FieldError errors={[fieldState.error]} />
                   )}
