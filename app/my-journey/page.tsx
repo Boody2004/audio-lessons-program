@@ -26,6 +26,7 @@ const Profile = async () => {
       <section className="flex justify-between gap-4 max-sm:flex-col items-center">
         <div className="flex gap-4 items-center">
           <Image
+            className="rounded-lg"
             src={user.imageUrl}
             alt={user.firstName!}
             width={110}
